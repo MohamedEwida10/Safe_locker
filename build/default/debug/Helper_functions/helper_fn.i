@@ -5031,44 +5031,122 @@ void ecu_layer_Initialization(void);
 
 
 
+    typedef struct{
+        uint8 pass_arr_num_digits;
+        uint8 password[8];
+    }pass_t;
+
     uint8 keypad_value = 0;
     uint8 pass_check = 0;
     uint8 selected_mode = 0;
     uint8 user_statue = 0 ;
 
-    uint8 pass_num_digits = 0 ;
-    uint8 pass_confirm_num_digits = 0 ;
-    uint8 enterd_pass_num_digits = 0 ;
-    uint8 stored_pass_num_digits = 0 ;
+    pass_t pass_obj= {
+    .pass_arr_num_digits = 0,
+    .password[0] = '\0',
+    .password[1] = '\0',
+    .password[2] = '\0',
+    .password[3] = '\0',
+    .password[4] = '\0',
+    .password[5] = '\0',
+    .password[6] = '\0',
+    .password[7] = '\0',
+    };
 
-    uint8 password[8] = {'\0','\0','\0','\0','\0','\0','\0','\0'};
-    uint8 password_confirm[8] = {'\0','\0','\0','\0','\0','\0','\0','\0'};
-    uint8 entered_password[8] = {'\0','\0','\0','\0','\0','\0','\0','\0'};
-    uint8 stored_password[8] = {'\0','\0','\0','\0','\0','\0','\0','\0'};
+    pass_t confirm_pass_obj= {
+    .pass_arr_num_digits = 0,
+    .password[0] = '\0',
+    .password[1] = '\0',
+    .password[2] = '\0',
+    .password[3] = '\0',
+    .password[4] = '\0',
+    .password[5] = '\0',
+    .password[6] = '\0',
+    .password[7] = '\0',
+    };
+
+    pass_t enterd_pass_obj= {
+    .pass_arr_num_digits = 0,
+    .password[0] = '\0',
+    .password[1] = '\0',
+    .password[2] = '\0',
+    .password[3] = '\0',
+    .password[4] = '\0',
+    .password[5] = '\0',
+    .password[6] = '\0',
+    .password[7] = '\0',
+    };
+
+    pass_t stored_pass_obj= {
+    .pass_arr_num_digits = 0,
+    .password[0] = '\0',
+    .password[1] = '\0',
+    .password[2] = '\0',
+    .password[3] = '\0',
+    .password[4] = '\0',
+    .password[5] = '\0',
+    .password[6] = '\0',
+    .password[7] = '\0',
+    };
+
 
     extern chr_lcd_4bit_t lcd1;
     extern keypad_t keypad;
 
 
 
-
-
-
 void welcome_msg(void);
-void initialize_var(void);
-void get_password(uint8 *pass,uint8 *pass_didits);
-void password_confirmation(uint8 *pass,uint8 *pass_didits,uint8 *pass_confirm,uint8 *pass_confirm_didits);
-void entering_password(uint8 *pass_entered,uint8 *pass_entered_didits,uint8 *stored_password,
-                       uint8 *stored_password_digits,uint8 *user_statue);
-void change_password(uint8 *old_pass,uint8 *old_pass_didits,uint8 *stored_password,
-                     uint8 *stored_password_digits,uint8 *new_pass,uint8 *new_pass_Digits,
-                     uint8 *new_pass_confirm,uint8 *new_pass_confirm_Digits);
+
+
+
+
+
+void get_password(pass_t *pass_obj);
+
+
+
+
+
+
+void password_confirmation(pass_t *pass_obj,pass_t *confirm_pass_obj);
+
+
+
+
+
+
+
+void entering_password(pass_t *enterd_pass_obj,pass_t *stored_pass_obj,uint8 *user_statue);
+# 111 "Helper_functions/helper_fn.h"
+void change_password(pass_t *pass_obj,pass_t *stored_pass_obj,
+                     pass_t *enterd_pass_obj,pass_t *confirm_pass_obj);
 # 9 "Helper_functions/helper_fn.c" 2
 
 
-static void save_password(uint8 *pass);
-static void comparing_password(uint8 *pass,uint8 *pass_digits,uint8 *pass_confirm,uint8 *pass_confirm_digits,uint8 *result);
-static void check_entered_password(uint8 *entered_pass,uint8 *entered_pass_digits,uint8 *stored_pass,uint8 *stored_pass_digits,uint8 *result);
+
+
+
+
+static void save_password(pass_t *pass_obj);
+
+
+
+
+
+
+static void comparing_password(pass_t *pass_obj,pass_t *confirm_pass_obj,uint8 *result);
+
+
+
+
+
+
+static void check_entered_password(pass_t *enterd_pass_obj,pass_t *stored_pass_obj,uint8 *result);
+
+
+
+
+
 
 void welcome_msg(void){
     lcd_4bit_send_command(&lcd1,0x01);
@@ -5079,12 +5157,11 @@ void welcome_msg(void){
     _delay((unsigned long)((20)*(8000000ul/4000.0)));
 }
 
-void initialize_var(void){
-    keypad_value = 0;
 
-}
 
-void get_password(uint8 *pass,uint8 *pass_didits){
+
+
+void get_password(pass_t *pass_obj){
    keypad_value = 0;
    uint8 counter = 0;
    uint8 lcd_counter = 2;
@@ -5099,30 +5176,30 @@ void get_password(uint8 *pass,uint8 *pass_didits){
 
         do{
         ecu_keypad_get_value(&keypad,&keypad_value);
-        _delay((unsigned long)((125)*(8000000ul/4000.0)));
+        _delay((unsigned long)((110)*(8000000ul/4000.0)));
         }while(keypad_value == 0 );
 
-        if(keypad_value == '#' && pass[0] == '\0'){
+        if(keypad_value == '#' && (pass_obj->password[0]) == '\0'){
             lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process ");
-                 _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                 _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                _delay((unsigned long)((300)*(8000000ul/4000.0)));
         }
-        else if(keypad_value == '#' && counter != -1){
+        else if(keypad_value == '#' && counter > 0){
                 counter--;
-                pass[counter] = '\0';
+                (pass_obj->password[counter])= '\0';
                 lcd_counter--;
                 lcd_4bit_send_char_data_pos(&lcd1,3,lcd_counter,' ');
             }
         else if(keypad_value == '='){
                 if(counter <= 3){
                      lcd_4bit_send_string_pos(&lcd1,4,1,"min 4 digits ");
-                    _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                    _delay((unsigned long)((300)*(8000000ul/4000.0)));
                     lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                    _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                    _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 }
                 else{
-                    *pass_didits = counter;
+                   (pass_obj->pass_arr_num_digits) = counter;
                    lcd_4bit_send_command(&lcd1,0x01);
                     _delay((unsigned long)((20)*(8000000ul/4000.0)));
                     return;
@@ -5130,13 +5207,13 @@ void get_password(uint8 *pass,uint8 *pass_didits){
         }
         else if(keypad_value == '/' || keypad_value == '*' || keypad_value == '+' || keypad_value == '-'){
                     lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process ");
-                     _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                     _delay((unsigned long)((300)*(8000000ul/4000.0)));
                     lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                    _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                    _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 }
         else{
             if(counter < 8){
-                        pass[counter] = keypad_value;
+                        (pass_obj->password[counter]) = keypad_value;
                         lcd_4bit_send_char_data_pos(&lcd1,3,lcd_counter,keypad_value);
                         _delay((unsigned long)((200)*(8000000ul/4000.0)));
                         lcd_4bit_send_char_data_pos(&lcd1,3,lcd_counter,'*');
@@ -5145,9 +5222,10 @@ void get_password(uint8 *pass,uint8 *pass_didits){
             }
             else{
                 lcd_4bit_send_string_pos(&lcd1,4,1,"max 8 digits ");
-                 _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                 _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                 _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                 _delay((unsigned long)((300)*(8000000ul/4000.0)));
+
             }
 
         }
@@ -5156,7 +5234,12 @@ void get_password(uint8 *pass,uint8 *pass_didits){
 
 }
 
-void password_confirmation(uint8 *pass,uint8 *pass_didits,uint8 *pass_confirm,uint8 *pass_confirm_didits){
+
+
+
+
+
+void password_confirmation(pass_t *pass_obj,pass_t *confirm_pass_obj){
    keypad_value = 0;
    uint8 counter = 0;
    uint8 comparing_result = 1;
@@ -5172,57 +5255,57 @@ void password_confirmation(uint8 *pass,uint8 *pass_didits,uint8 *pass_confirm,ui
 
         do{
         ecu_keypad_get_value(&keypad,&keypad_value);
-        _delay((unsigned long)((125)*(8000000ul/4000.0)));
+        _delay((unsigned long)((110)*(8000000ul/4000.0)));
         }while(keypad_value == 0 );
 
-        if(keypad_value == '#' && pass_confirm[0] == '\0'){
+        if(keypad_value == '#' && (confirm_pass_obj->password[0]) == '\0'){
             lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process ");
-                 _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                 _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                _delay((unsigned long)((300)*(8000000ul/4000.0)));
         }
-        else if(keypad_value == '#' && counter != -1){
+        else if(keypad_value == '#' && counter > 0){
                 counter--;
-                pass_confirm[counter] = '\0';
+                (confirm_pass_obj->password[counter]) = '\0';
                 lcd_counter--;
                 lcd_4bit_send_char_data_pos(&lcd1,3,lcd_counter,' ');
             }
         else if(keypad_value == '='){
                 if(counter <= 3){
                      lcd_4bit_send_string_pos(&lcd1,4,1,"min 4 digits ");
-                    _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                    _delay((unsigned long)((300)*(8000000ul/4000.0)));
                     lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                    _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                    _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 }
                 else{
-                     *pass_confirm_didits = counter;
-                   comparing_password(pass,pass_didits,pass_confirm,pass_confirm_didits,&comparing_result);
+                     (confirm_pass_obj->pass_arr_num_digits) = counter;
+                   comparing_password(pass_obj,confirm_pass_obj,&comparing_result);
                     if(comparing_result == 1){
-                        save_password(pass);
+                        save_password(pass_obj);
                         lcd_4bit_send_command(&lcd1,0x01);
                         _delay((unsigned long)((20)*(8000000ul/4000.0)));
                         lcd_4bit_send_string_pos(&lcd1,2,4,"password saved");
-                        _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                        _delay((unsigned long)((300)*(8000000ul/4000.0)));
                         lcd_4bit_send_string_pos(&lcd1,2,4,"                     ");
-                        _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                        _delay((unsigned long)((300)*(8000000ul/4000.0)));
                         break;
                     }else{
                          lcd_4bit_send_string_pos(&lcd1,4,1,"wrong password ");
-                         _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                         _delay((unsigned long)((300)*(8000000ul/4000.0)));
                         lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                        _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                        _delay((unsigned long)((300)*(8000000ul/4000.0)));
                     }
                 }
         }
         else if(keypad_value == '/' || keypad_value == '*' || keypad_value == '+' || keypad_value == '-'){
                     lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process ");
-                     _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                     _delay((unsigned long)((300)*(8000000ul/4000.0)));
                     lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                    _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                    _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 }
         else{
             if(counter < 8){
-                        pass_confirm[counter] = keypad_value;
+                        (confirm_pass_obj->password[counter]) = keypad_value;
                         lcd_4bit_send_char_data_pos(&lcd1,3,lcd_counter,keypad_value);
                         _delay((unsigned long)((200)*(8000000ul/4000.0)));
                         lcd_4bit_send_char_data_pos(&lcd1,3,lcd_counter,'*');
@@ -5231,9 +5314,10 @@ void password_confirmation(uint8 *pass,uint8 *pass_didits,uint8 *pass_confirm,ui
             }
             else{
                 lcd_4bit_send_string_pos(&lcd1,4,1,"max 8 digits ");
-                 _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                 _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                 _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                 _delay((unsigned long)((300)*(8000000ul/4000.0)));
+
             }
 
         }
@@ -5243,8 +5327,13 @@ void password_confirmation(uint8 *pass,uint8 *pass_didits,uint8 *pass_confirm,ui
 
 }
 
-void entering_password(uint8 *pass_entered,uint8 *pass_entered_didits,uint8 *stored_password,
-                       uint8 *stored_password_digits,uint8 *user_statue){
+
+
+
+
+
+
+void entering_password(pass_t *enterd_pass_obj,pass_t *stored_pass_obj,uint8 *user_statue){
    keypad_value = 0;
    uint8 counter = 0;
    uint8 comparing_result = 1;
@@ -5262,39 +5351,39 @@ void entering_password(uint8 *pass_entered,uint8 *pass_entered_didits,uint8 *sto
 
         do{
         ecu_keypad_get_value(&keypad,&keypad_value);
-        _delay((unsigned long)((125)*(8000000ul/4000.0)));
+        _delay((unsigned long)((110)*(8000000ul/4000.0)));
         }while(keypad_value == 0 );
 
-        if(keypad_value == '#' && pass_entered[0] == '\0'){
+        if(keypad_value == '#' && (enterd_pass_obj->password[0]) == '\0'){
             lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process ");
-                 _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                 _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                _delay((unsigned long)((300)*(8000000ul/4000.0)));
         }
-        else if(keypad_value == '#' && counter != -1){
+        else if(keypad_value == '#' && counter > 0){
                 counter--;
-                pass_entered[counter] = '\0';
+                (enterd_pass_obj->password[counter]) = '\0';
                 lcd_counter--;
                 lcd_4bit_send_char_data_pos(&lcd1,3,lcd_counter,' ');
             }
         else if(keypad_value == '='){
                 if(counter <= 3){
                      lcd_4bit_send_string_pos(&lcd1,4,1,"min 4 digits ");
-                    _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                    _delay((unsigned long)((300)*(8000000ul/4000.0)));
                     lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                    _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                    _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 }
                 else{
-                     *pass_entered_didits = counter;
-                   check_entered_password(pass_entered,pass_entered_didits,stored_password,stored_password_digits,&comparing_result);
+                    enterd_pass_obj->pass_arr_num_digits = counter;
+                    check_entered_password(enterd_pass_obj,stored_pass_obj,&comparing_result);
                     if(comparing_result == 1){
 
                         lcd_4bit_send_command(&lcd1,0x01);
                         _delay((unsigned long)((20)*(8000000ul/4000.0)));
                         lcd_4bit_send_string_pos(&lcd1,2,4,"password correct");
-                        _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                        _delay((unsigned long)((300)*(8000000ul/4000.0)));
                         lcd_4bit_send_string_pos(&lcd1,2,4,"                     ");
-                        _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                        _delay((unsigned long)((300)*(8000000ul/4000.0)));
 
                         *user_statue = 1 ;
 
@@ -5314,17 +5403,17 @@ void entering_password(uint8 *pass_entered,uint8 *pass_entered_didits,uint8 *sto
                             convert_byte_to_string(wrong_counter,str);
                             lcd_4bit_send_string_pos(&lcd1,4,1,str);
                             lcd_4bit_send_string_pos(&lcd1,4,2,"/3");
-                            _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                            _delay((unsigned long)((300)*(8000000ul/4000.0)));
                             lcd_4bit_send_string_pos(&lcd1,2,4,"                     ");
                             lcd_4bit_send_string_pos(&lcd1,4,1,"   ");
-                            _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                            _delay((unsigned long)((300)*(8000000ul/4000.0)));
 
                             lcd_4bit_send_command(&lcd1,0x08);
                             _delay((unsigned long)((300)*(8000000ul/4000.0)));
 
                           while(counter){
                               counter--;
-                              pass_entered[counter] = '\0';
+                              (enterd_pass_obj->password[counter]) = '\0';
                               lcd_counter--;
                               lcd_4bit_send_char_data_pos(&lcd1,3,lcd_counter,' ');
                           }
@@ -5338,13 +5427,13 @@ void entering_password(uint8 *pass_entered,uint8 *pass_entered_didits,uint8 *sto
         }
         else if(keypad_value == '/' || keypad_value == '*' || keypad_value == '+' || keypad_value == '-'){
                     lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process ");
-                     _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                     _delay((unsigned long)((300)*(8000000ul/4000.0)));
                     lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                    _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                    _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 }
         else{
             if(counter < 8){
-                        pass_entered[counter] = keypad_value;
+                        (enterd_pass_obj->password[counter]) = keypad_value;
                         lcd_4bit_send_char_data_pos(&lcd1,3,lcd_counter,keypad_value);
                         _delay((unsigned long)((200)*(8000000ul/4000.0)));
                         lcd_4bit_send_char_data_pos(&lcd1,3,lcd_counter,'*');
@@ -5353,17 +5442,17 @@ void entering_password(uint8 *pass_entered,uint8 *pass_entered_didits,uint8 *sto
             }
             else{
                 lcd_4bit_send_string_pos(&lcd1,4,1,"max 8 digits ");
-                 _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                 _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                 _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                 _delay((unsigned long)((300)*(8000000ul/4000.0)));
+
             }
         }
     }
 }
-
-void change_password(uint8 *old_pass,uint8 *old_pass_didits,uint8 *stored_password,
-                       uint8 *stored_password_digits,uint8 *new_pass,uint8 *new_pass_Digits,
-                            uint8 *new_pass_confirm,uint8 *new_pass_confirm_Digits){
+# 346 "Helper_functions/helper_fn.c"
+void change_password(pass_t *pass_obj,pass_t *stored_pass_obj,
+                     pass_t *enterd_pass_obj,pass_t *confirm_pass_obj){
    keypad_value = 0;
    uint8 counter = 0;
    uint8 comparing_result = 1;
@@ -5379,52 +5468,52 @@ void change_password(uint8 *old_pass,uint8 *old_pass_didits,uint8 *stored_passwo
 
         do{
         ecu_keypad_get_value(&keypad,&keypad_value);
-        _delay((unsigned long)((125)*(8000000ul/4000.0)));
+        _delay((unsigned long)((110)*(8000000ul/4000.0)));
         }while(keypad_value == 0 );
 
-        if(keypad_value == '#' && old_pass[0] == '\0'){
+        if(keypad_value == '#' && pass_obj->password[0] == '\0'){
             lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process ");
-                 _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                 _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                _delay((unsigned long)((300)*(8000000ul/4000.0)));
         }
-        else if(keypad_value == '#' && counter != -1){
+        else if(keypad_value == '#' && counter > 0){
                 counter--;
-                old_pass[counter] = '\0';
+                pass_obj->password[counter] = '\0';
                 lcd_counter--;
                 lcd_4bit_send_char_data_pos(&lcd1,3,lcd_counter,' ');
             }
         else if(keypad_value == '='){
                 if(counter <= 3){
                      lcd_4bit_send_string_pos(&lcd1,4,1,"min 4 digits ");
-                    _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                    _delay((unsigned long)((300)*(8000000ul/4000.0)));
                     lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                    _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                    _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 }
                 else{
-                     *old_pass_didits = counter;
-                   check_entered_password(old_pass,old_pass_didits,stored_password,stored_password_digits,&comparing_result);
+                     pass_obj->pass_arr_num_digits = counter;
+                   check_entered_password(pass_obj,stored_pass_obj,&comparing_result);
                     if(comparing_result == 1){
-                        get_password(new_pass,new_pass_Digits);
-                        password_confirmation(new_pass,new_pass_Digits,new_pass_confirm,new_pass_confirm_Digits);
+                        get_password(enterd_pass_obj);
+                        password_confirmation(enterd_pass_obj,confirm_pass_obj);
                         break;
                     }else{
                          lcd_4bit_send_string_pos(&lcd1,4,1,"wrong password ");
-                         _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                         _delay((unsigned long)((300)*(8000000ul/4000.0)));
                         lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                        _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                        _delay((unsigned long)((300)*(8000000ul/4000.0)));
                     }
                 }
         }
         else if(keypad_value == '/' || keypad_value == '*' || keypad_value == '+' || keypad_value == '-'){
                     lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process ");
-                     _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                     _delay((unsigned long)((300)*(8000000ul/4000.0)));
                     lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                    _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                    _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 }
         else{
             if(counter < 8){
-                        old_pass[counter] = keypad_value;
+                        pass_obj->password[counter] = keypad_value;
                         lcd_4bit_send_char_data_pos(&lcd1,3,lcd_counter,keypad_value);
                         _delay((unsigned long)((200)*(8000000ul/4000.0)));
                         lcd_4bit_send_char_data_pos(&lcd1,3,lcd_counter,'*');
@@ -5433,9 +5522,9 @@ void change_password(uint8 *old_pass,uint8 *old_pass_didits,uint8 *stored_passwo
             }
             else{
                 lcd_4bit_send_string_pos(&lcd1,4,1,"max 8 digits ");
-                 _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                 _delay((unsigned long)((300)*(8000000ul/4000.0)));
                 lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-                 _delay((unsigned long)((500)*(8000000ul/4000.0)));
+                 _delay((unsigned long)((300)*(8000000ul/4000.0)));
             }
 
         }
@@ -5444,21 +5533,34 @@ void change_password(uint8 *old_pass,uint8 *old_pass_didits,uint8 *stored_passwo
 
 }
 
-static void save_password(uint8 *pass){
+
+
+
+
+
+static void save_password(pass_t *pass_obj){
     uint8 counter = 0;
-    counter = 0;
-    while(pass[counter]){
-        Data_EEPROM_WriteByte(0x03f8 + counter,pass[counter]);
+    while(pass_obj->password[counter]){
+        Data_EEPROM_WriteByte(0x03f8 + counter,(pass_obj->password[counter]));
         counter++;
     }
 }
 
-static void comparing_password(uint8 *pass,uint8 *pass_digits,uint8 *pass_confirm,uint8 *pass_confirm_digits,uint8 *result){
+
+
+
+
+
+
+static void comparing_password(pass_t *pass_obj,pass_t *confirm_pass_obj,uint8 *result){
 uint8 comparing_counter = 0;
+uint8 looping_counter = (pass_obj->pass_arr_num_digits);
+
 *result = 1;
-    if(*pass_digits == *pass_confirm_digits){
-        while((*pass_digits)--){
-            if(pass[comparing_counter] == pass_confirm[comparing_counter]){
+
+    if(pass_obj->pass_arr_num_digits == confirm_pass_obj->pass_arr_num_digits){
+        while(looping_counter--){
+            if(pass_obj->password[comparing_counter] == confirm_pass_obj->password[comparing_counter]){
                 comparing_counter++;
             }
             else{
@@ -5473,27 +5575,34 @@ uint8 comparing_counter = 0;
 
 }
 
-static void check_entered_password(uint8 *entered_pass,uint8 *entered_pass_digits,uint8 *stored_pass,uint8 *stored_pass_digits,uint8 *result){
+
+
+
+
+
+
+static void check_entered_password(pass_t *enterd_pass_obj,pass_t *stored_pass_obj,uint8 *result){
 uint8 comparing_counter = 0;
 uint8 helper_counter = 0;
 
 *result = 1;
 
 while(1){
-    Data_EEPROM_ReadByte((0x03f8 + helper_counter),&stored_pass[helper_counter]);
-    if(0xFF == stored_pass[helper_counter]){
-        stored_pass[helper_counter] = '\0';
+    Data_EEPROM_ReadByte((0x03f8 + helper_counter),&(stored_pass_obj->password[helper_counter]));
+    if(0xFF == stored_pass_obj->password[helper_counter]){
+        stored_pass_obj->password[helper_counter] = '\0';
         break;
     }else{ }
     helper_counter++;
 }
 
 
-*stored_pass_digits = helper_counter;
+stored_pass_obj->pass_arr_num_digits = helper_counter;
 
-    if(*stored_pass_digits == *entered_pass_digits){
-        while((*stored_pass_digits)--){
-            if(stored_pass[comparing_counter] == entered_pass[comparing_counter]){
+
+    if((stored_pass_obj->pass_arr_num_digits) == enterd_pass_obj->pass_arr_num_digits){
+        while((stored_pass_obj->pass_arr_num_digits)--){
+            if(stored_pass_obj->password[comparing_counter] == enterd_pass_obj->password[comparing_counter]){
                 comparing_counter++;
             }
             else{

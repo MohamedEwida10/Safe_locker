@@ -1,31 +1,31 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- C:\Users\Blu-Ray\AppData\Local\Temp\xcAsdbg.\driver_tmp_3.o
- -Odist/default/debug\projects.debug.hex
- -logfile=dist/default/debug\projects.debug.hxl
+ C:\Users\Blu-Ray\AppData\Local\Temp\xcAsj98.\driver_tmp_3.o
+ -Odist/default/debug\Safe_locker.debug.hex
+ -logfile=dist/default/debug\Safe_locker.debug.hxl
  -addressing=1
  -break=300000
 
 ### Memory Usage ###
  Input file ranges:
-  0h - 3h		(C:\Users\Blu-Ray\AppData\Local\Temp\xcAsdbg.\driver_tmp_3.o)
-  8h - 364Ch		(C:\Users\Blu-Ray\AppData\Local\Temp\xcAsdbg.\driver_tmp_3.o)
-  364Eh - 3744h		(C:\Users\Blu-Ray\AppData\Local\Temp\xcAsdbg.\driver_tmp_3.o)
-  3746h - 3755h		(C:\Users\Blu-Ray\AppData\Local\Temp\xcAsdbg.\driver_tmp_3.o)
-  FEE8h - FFFFh		(C:\Users\Blu-Ray\AppData\Local\Temp\xcAsdbg.\driver_tmp_3.o)
-  300000h - 30000Dh		(C:\Users\Blu-Ray\AppData\Local\Temp\xcAsdbg.\driver_tmp_3.o)
+  0h - 3h		(C:\Users\Blu-Ray\AppData\Local\Temp\xcAsj98.\driver_tmp_3.o)
+  8h - 3520h		(C:\Users\Blu-Ray\AppData\Local\Temp\xcAsj98.\driver_tmp_3.o)
+  3522h - 3742h		(C:\Users\Blu-Ray\AppData\Local\Temp\xcAsj98.\driver_tmp_3.o)
+  3744h - 374Bh		(C:\Users\Blu-Ray\AppData\Local\Temp\xcAsj98.\driver_tmp_3.o)
+  FEE8h - FFFFh		(C:\Users\Blu-Ray\AppData\Local\Temp\xcAsj98.\driver_tmp_3.o)
+  300000h - 30000Dh		(C:\Users\Blu-Ray\AppData\Local\Temp\xcAsj98.\driver_tmp_3.o)
  Unused ranges:
   4h - 7h
-  364Dh - 364Dh
-  3745h - 3745h
-  3756h - FEE7h
+  3521h - 3521h
+  3743h - 3743h
+  374Ch - FEE7h
   10000h - 2FFFFFh
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (C:\Users\Blu-Ray\AppData\Local\Temp\xcAsdbg.\driver_tmp_3.o)
+  H1 = Input file             (C:\Users\Blu-Ray\AppData\Local\Temp\xcAsj98.\driver_tmp_3.o)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
@@ -879,7 +879,7 @@
 000034F0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003500 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003510 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00003520 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00003520 | H1 -- H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003530 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003540 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003550 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
@@ -897,7 +897,7 @@
 00003610 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003620 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003630 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00003640 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- H1 H1
+00003640 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003650 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003660 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003670 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
@@ -913,8 +913,7 @@
 00003710 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003720 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003730 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00003740 | H1 H1 H1 H1 H1 -- H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00003750 | H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- --
+00003740 | H1 H1 H1 -- H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- --
 ----------------------------------------------------------
 0000FEE0 | -- -- -- -- -- -- -- -- H1 H1 H1 H1 H1 H1 H1 H1
 0000FEF0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1

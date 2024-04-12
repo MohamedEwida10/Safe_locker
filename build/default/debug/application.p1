@@ -1,13 +1,14 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"17 ./Helper_functions/helper_fn.h
+[; ;./Helper_functions/helper_fn.h: 17:     typedef struct{
+[s S284 `uc 1 `uc -> 8 `i ]
+[n S284 . pass_arr_num_digits password ]
 [p mainexit ]
 "26 ./application.h
 [; ;./application.h: 26: void Application_Initialization(void);
 [v _Application_Initialization `(v ~T0 @X0 0 ef ]
-"41 ./Helper_functions/helper_fn.h
-[; ;./Helper_functions/helper_fn.h: 41: void initialize_var(void);
-[v _initialize_var `(v ~T0 @X0 0 ef ]
-"40
-[; ;./Helper_functions/helper_fn.h: 40: void welcome_msg(void);
+"81 ./Helper_functions/helper_fn.h
+[; ;./Helper_functions/helper_fn.h: 81: void welcome_msg(void);
 [v _welcome_msg `(v ~T0 @X0 0 ef ]
 "26 ./Helper_functions/../MCAL_layer/EEPROM/hal_eeprom.h
 [v _Data_EEPROM_ReadByte `(uc ~T0 @X0 0 ef2`us`*uc ]
@@ -21,8 +22,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "51
 [; ;./ECU_layer/chr_LCD/ecu_chr_LCD.h: 51: STD_ReturnType lcd_4bit_send_string_pos(const chr_lcd_4bit_t *lcd,uint8 row,uint8 column,uint8 *str);
 [v _lcd_4bit_send_string_pos `(uc ~T0 @X0 0 ef4`*CS280`uc`uc`*uc ]
-"32 ./Helper_functions/helper_fn.h
-[; ;./Helper_functions/helper_fn.h: 32:     extern chr_lcd_4bit_t lcd1;
+"76 ./Helper_functions/helper_fn.h
+[; ;./Helper_functions/helper_fn.h: 76:     extern chr_lcd_4bit_t lcd1;
 [v _lcd1 `S280 ~T0 @X0 0 e ]
 "21 ./ECU_layer/Keypad/ecu_keypad.h
 [; ;./ECU_layer/Keypad/ecu_keypad.h: 21: typedef struct{
@@ -31,22 +32,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "27
 [; ;./ECU_layer/Keypad/ecu_keypad.h: 27: STD_ReturnType ecu_keypad_get_value(const keypad_t *keypad, uint8 *value);
 [v _ecu_keypad_get_value `(uc ~T0 @X0 0 ef2`*CS279`*uc ]
-"33 ./Helper_functions/helper_fn.h
-[; ;./Helper_functions/helper_fn.h: 33:     extern keypad_t keypad;
+"77 ./Helper_functions/helper_fn.h
+[; ;./Helper_functions/helper_fn.h: 77:     extern keypad_t keypad;
 [v _keypad `S279 ~T0 @X0 0 e ]
 [v F2781 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8\pic\include\builtins.h
 [v __delay `JF2781 ~T0 @X0 0 e ]
 [p i __delay ]
-"42 ./Helper_functions/helper_fn.h
-[; ;./Helper_functions/helper_fn.h: 42: void get_password(uint8 *pass,uint8 *pass_didits);
-[v _get_password `(v ~T0 @X0 0 ef2`*uc`*uc ]
-"43
-[; ;./Helper_functions/helper_fn.h: 43: void password_confirmation(uint8 *pass,uint8 *pass_didits,uint8 *pass_confirm,uint8 *pass_confirm_didits);
-[v _password_confirmation `(v ~T0 @X0 0 ef4`*uc`*uc`*uc`*uc ]
-"44
-[; ;./Helper_functions/helper_fn.h: 44: void entering_password(uint8 *pass_entered,uint8 *pass_entered_didits,uint8 *stored_password,
-[v _entering_password `(v ~T0 @X0 0 ef5`*uc`*uc`*uc`*uc`*uc ]
+"87 ./Helper_functions/helper_fn.h
+[; ;./Helper_functions/helper_fn.h: 87: void get_password(pass_t *pass_obj);
+[v _get_password `(v ~T0 @X0 0 ef1`*S284 ]
+"94
+[; ;./Helper_functions/helper_fn.h: 94: void password_confirmation(pass_t *pass_obj,pass_t *confirm_pass_obj);
+[v _password_confirmation `(v ~T0 @X0 0 ef2`*S284`*S284 ]
+"102
+[; ;./Helper_functions/helper_fn.h: 102: void entering_password(pass_t *enterd_pass_obj,pass_t *stored_pass_obj,uint8 *user_statue);
+[v _entering_password `(v ~T0 @X0 0 ef3`*S284`*S284`*uc ]
 "27 ./ECU_layer/LED/ecu_led.h
 [; ;./ECU_layer/LED/ecu_led.h: 27: typedef struct{
 [s S274 :4 `uc 1 :3 `uc 1 :1 `uc 1 ]
@@ -71,8 +72,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "31 ./ECU_layer/DC_motor/ecu_DC_motor.h
 [; ;./ECU_layer/DC_motor/ecu_DC_motor.h: 31: STD_ReturnType ecu_dc_motor_stop(const dc_motor_t *dc_motor);
 [v _ecu_dc_motor_stop `(uc ~T0 @X0 0 ef1`*CS277 ]
-"90 application.c
-[; ;application.c: 90:                 gpio_pin_write_logic(&buzzer,HIGH);
+"89 application.c
+[; ;application.c: 89:                 gpio_pin_write_logic(&buzzer,HIGH);
 [c E2979 0 1 .. ]
 [n E2979 . LOW HIGH  ]
 "75 ./ECU_layer/../MCAL_layer/Interrupt/../GPIO/hal_gpio.h
@@ -81,9 +82,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _buzzer `S273 ~T0 @X0 0 e ]
 "25
 [v _red_led `S274 ~T0 @X0 0 e ]
-"46 ./Helper_functions/helper_fn.h
-[; ;./Helper_functions/helper_fn.h: 46: void change_password(uint8 *old_pass,uint8 *old_pass_didits,uint8 *stored_password,
-[v _change_password `(v ~T0 @X0 0 ef8`*uc`*uc`*uc`*uc`*uc`*uc`*uc`*uc ]
+"111 ./Helper_functions/helper_fn.h
+[; ;./Helper_functions/helper_fn.h: 111: void change_password(pass_t *pass_obj,pass_t *stored_pass_obj,
+[v _change_password `(v ~T0 @X0 0 ef4`*S284`*S284`*S284`*S284 ]
 "38 ./Helper_functions/../ECU_layer/ecu_layer_init.h
 [v _ecu_layer_Initialization `(v ~T0 @X0 0 ef ]
 "54 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8\pic\include\proc\pic18f4620.h
@@ -497,58 +498,37 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6715
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8\pic\include\proc\pic18f4620.h: 6715: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"17 ./Helper_functions/helper_fn.h
-[; ;./Helper_functions/helper_fn.h: 17:     uint8 keypad_value = 0;
+"22 ./Helper_functions/helper_fn.h
+[; ;./Helper_functions/helper_fn.h: 22:     uint8 keypad_value = 0;
 [v _keypad_value `uc ~T0 @X0 1 e ]
 [i _keypad_value
 -> -> 0 `i `uc
 ]
-"18
-[; ;./Helper_functions/helper_fn.h: 18:     uint8 pass_check = 0;
+"23
+[; ;./Helper_functions/helper_fn.h: 23:     uint8 pass_check = 0;
 [v _pass_check `uc ~T0 @X0 1 e ]
 [i _pass_check
 -> -> 0 `i `uc
 ]
-"19
-[; ;./Helper_functions/helper_fn.h: 19:     uint8 selected_mode = 0;
+"24
+[; ;./Helper_functions/helper_fn.h: 24:     uint8 selected_mode = 0;
 [v _selected_mode `uc ~T0 @X0 1 e ]
 [i _selected_mode
 -> -> 0 `i `uc
 ]
-"20
-[; ;./Helper_functions/helper_fn.h: 20:     uint8 user_statue = 0 ;
+"25
+[; ;./Helper_functions/helper_fn.h: 25:     uint8 user_statue = 0 ;
 [v _user_statue `uc ~T0 @X0 1 e ]
 [i _user_statue
 -> -> 0 `i `uc
 ]
-"22
-[; ;./Helper_functions/helper_fn.h: 22:     uint8 pass_num_digits = 0 ;
-[v _pass_num_digits `uc ~T0 @X0 1 e ]
-[i _pass_num_digits
--> -> 0 `i `uc
-]
-"23
-[; ;./Helper_functions/helper_fn.h: 23:     uint8 pass_confirm_num_digits = 0 ;
-[v _pass_confirm_num_digits `uc ~T0 @X0 1 e ]
-[i _pass_confirm_num_digits
--> -> 0 `i `uc
-]
-"24
-[; ;./Helper_functions/helper_fn.h: 24:     uint8 enterd_pass_num_digits = 0 ;
-[v _enterd_pass_num_digits `uc ~T0 @X0 1 e ]
-[i _enterd_pass_num_digits
--> -> 0 `i `uc
-]
-"25
-[; ;./Helper_functions/helper_fn.h: 25:     uint8 stored_pass_num_digits = 0 ;
-[v _stored_pass_num_digits `uc ~T0 @X0 1 e ]
-[i _stored_pass_num_digits
--> -> 0 `i `uc
-]
 "27
-[; ;./Helper_functions/helper_fn.h: 27:     uint8 password[8] = {'\0','\0','\0','\0','\0','\0','\0','\0'};
-[v _password `uc ~T0 @X0 -> 8 `i e ]
-[i _password
+[; ;./Helper_functions/helper_fn.h: 27:     pass_t pass_obj= {
+[v _pass_obj `S284 ~T0 @X0 1 e ]
+[i _pass_obj
+:U ..
+:U ..
+-> -> 0 `i `uc
 :U ..
 -> -> 0 `ui `uc
 -> -> 0 `ui `uc
@@ -559,11 +539,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `ui `uc
 -> -> 0 `ui `uc
 ..
+..
+..
 ]
-"28
-[; ;./Helper_functions/helper_fn.h: 28:     uint8 password_confirm[8] = {'\0','\0','\0','\0','\0','\0','\0','\0'};
-[v _password_confirm `uc ~T0 @X0 -> 8 `i e ]
-[i _password_confirm
+"39
+[; ;./Helper_functions/helper_fn.h: 39:     pass_t confirm_pass_obj= {
+[v _confirm_pass_obj `S284 ~T0 @X0 1 e ]
+[i _confirm_pass_obj
+:U ..
+:U ..
+-> -> 0 `i `uc
 :U ..
 -> -> 0 `ui `uc
 -> -> 0 `ui `uc
@@ -574,11 +559,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `ui `uc
 -> -> 0 `ui `uc
 ..
+..
+..
 ]
-"29
-[; ;./Helper_functions/helper_fn.h: 29:     uint8 entered_password[8] = {'\0','\0','\0','\0','\0','\0','\0','\0'};
-[v _entered_password `uc ~T0 @X0 -> 8 `i e ]
-[i _entered_password
+"51
+[; ;./Helper_functions/helper_fn.h: 51:     pass_t enterd_pass_obj= {
+[v _enterd_pass_obj `S284 ~T0 @X0 1 e ]
+[i _enterd_pass_obj
+:U ..
+:U ..
+-> -> 0 `i `uc
 :U ..
 -> -> 0 `ui `uc
 -> -> 0 `ui `uc
@@ -589,11 +579,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `ui `uc
 -> -> 0 `ui `uc
 ..
+..
+..
 ]
-"30
-[; ;./Helper_functions/helper_fn.h: 30:     uint8 stored_password[8] = {'\0','\0','\0','\0','\0','\0','\0','\0'};
-[v _stored_password `uc ~T0 @X0 -> 8 `i e ]
-[i _stored_password
+"63
+[; ;./Helper_functions/helper_fn.h: 63:     pass_t stored_pass_obj= {
+[v _stored_pass_obj `S284 ~T0 @X0 1 e ]
+[i _stored_pass_obj
+:U ..
+:U ..
+-> -> 0 `i `uc
 :U ..
 -> -> 0 `ui `uc
 -> -> 0 `ui `uc
@@ -603,6 +598,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `ui `uc
 -> -> 0 `ui `uc
 -> -> 0 `ui `uc
+..
+..
 ..
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
@@ -621,283 +618,280 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _Application_Initialization ..  ]
 "16
 [; ;application.c: 16:     while(1){
-[e :U 286 ]
+[e :U 287 ]
 {
 "17
-[; ;application.c: 17:         initialize_var();
-[e ( _initialize_var ..  ]
-"18
-[; ;application.c: 18:         welcome_msg();
+[; ;application.c: 17:         welcome_msg();
 [e ( _welcome_msg ..  ]
-"19
-[; ;application.c: 19:         Data_EEPROM_ReadByte(0x03f8,&pass_check);
+"18
+[; ;application.c: 18:         Data_EEPROM_ReadByte(0x03f8,&pass_check);
 [e ( _Data_EEPROM_ReadByte (2 , -> -> 1016 `i `us &U _pass_check ]
+"19
+[; ;application.c: 19:         if(pass_check == 0xff){
+[e $ ! == -> _pass_check `i -> 255 `i 289  ]
+{
 "20
-[; ;application.c: 20:         if(pass_check == 0xff){
-[e $ ! == -> _pass_check `i -> 255 `i 288  ]
-{
-"21
-[; ;application.c: 21:             lcd_4bit_send_string_pos(&lcd1,2,1,"1-Set new password.");
+[; ;application.c: 20:             lcd_4bit_send_string_pos(&lcd1,2,1,"1-Set new password.");
 [e ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd1 `*CS280 -> -> 2 `i `uc -> -> 1 `i `uc :s 1C ]
+"22
+[; ;application.c: 22:             while(1){
+[e :U 291 ]
+{
 "23
-[; ;application.c: 23:             while(1){
-[e :U 290 ]
-{
-"24
-[; ;application.c: 24:                 do{
-[e :U 294 ]
-{
-"25
-[; ;application.c: 25:                 ecu_keypad_get_value(&keypad,&keypad_value);
-[e ( _ecu_keypad_get_value (2 , -> &U _keypad `*CS279 &U _keypad_value ]
-"26
-[; ;application.c: 26:                 _delay((unsigned long)((100)*(8000000ul/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
-"27
-[; ;application.c: 27:                 }while(keypad_value == 0 );
-}
-[e $ == -> _keypad_value `i -> 0 `i 294  ]
-[e :U 293 ]
-"29
-[; ;application.c: 29:                 if(keypad_value == '1'){
-[e $ ! == -> _keypad_value `ui -> 49 `ui 295  ]
-{
-"30
-[; ;application.c: 30:                     _delay((unsigned long)((100)*(8000000ul/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
-"31
-[; ;application.c: 31:                     break;
-[e $U 291  ]
-"32
-[; ;application.c: 32:                 }
-}
-[e $U 296  ]
-"33
-[; ;application.c: 33:                 else{
+[; ;application.c: 23:                 do{
 [e :U 295 ]
 {
-"34
-[; ;application.c: 34:                     lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process ");
-[e ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd1 `*CS280 -> -> 4 `i `uc -> -> 1 `i `uc :s 2C ]
-"35
-[; ;application.c: 35:                     _delay((unsigned long)((500)*(8000000ul/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
-"36
-[; ;application.c: 36:                     lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-[e ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd1 `*CS280 -> -> 4 `i `uc -> -> 1 `i `uc :s 3C ]
-"37
-[; ;application.c: 37:                     _delay((unsigned long)((500)*(8000000ul/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
-"38
-[; ;application.c: 38:                 }
+"24
+[; ;application.c: 24:                 ecu_keypad_get_value(&keypad,&keypad_value);
+[e ( _ecu_keypad_get_value (2 , -> &U _keypad `*CS279 &U _keypad_value ]
+"25
+[; ;application.c: 25:                 _delay((unsigned long)((100)*(8000000ul/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
+"26
+[; ;application.c: 26:                 }while(keypad_value == 0 );
 }
-[e :U 296 ]
-"39
-[; ;application.c: 39:             }
-}
-[e :U 289 ]
-[e $U 290  ]
-[e :U 291 ]
-"41
-[; ;application.c: 41:             get_password(password,&pass_num_digits);
-[e ( _get_password (2 , &U _password &U _pass_num_digits ]
-"43
-[; ;application.c: 43:             password_confirmation(password,&pass_num_digits,password_confirm,&pass_confirm_num_digits);
-[e ( _password_confirmation (4 , , , &U _password &U _pass_num_digits &U _password_confirm &U _pass_confirm_num_digits ]
-"46
-[; ;application.c: 46:         }
+[e $ == -> _keypad_value `i -> 0 `i 295  ]
+[e :U 294 ]
+"28
+[; ;application.c: 28:                 if(keypad_value == '1'){
+[e $ ! == -> _keypad_value `ui -> 49 `ui 296  ]
+{
+"29
+[; ;application.c: 29:                     _delay((unsigned long)((100)*(8000000ul/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
+"30
+[; ;application.c: 30:                     break;
+[e $U 292  ]
+"31
+[; ;application.c: 31:                 }
 }
 [e $U 297  ]
-"47
-[; ;application.c: 47:         else{ }
-[e :U 288 ]
+"32
+[; ;application.c: 32:                 else{
+[e :U 296 ]
 {
+"33
+[; ;application.c: 33:                     lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process ");
+[e ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd1 `*CS280 -> -> 4 `i `uc -> -> 1 `i `uc :s 2C ]
+"34
+[; ;application.c: 34:                     _delay((unsigned long)((500)*(8000000ul/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
+"35
+[; ;application.c: 35:                     lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
+[e ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd1 `*CS280 -> -> 4 `i `uc -> -> 1 `i `uc :s 3C ]
+"36
+[; ;application.c: 36:                     _delay((unsigned long)((500)*(8000000ul/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
+"37
+[; ;application.c: 37:                 }
 }
 [e :U 297 ]
-"50
-[; ;application.c: 50:         lcd_4bit_send_string_pos(&lcd1,2,1,"1-Enter password.");
-[e ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd1 `*CS280 -> -> 2 `i `uc -> -> 1 `i `uc :s 4C ]
-"51
-[; ;application.c: 51:         lcd_4bit_send_string_pos(&lcd1,3,1,"2-Change password.");
-[e ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd1 `*CS280 -> -> 3 `i `uc -> -> 1 `i `uc :s 5C ]
-"54
-[; ;application.c: 54:          while(1){
-[e :U 299 ]
-{
-"55
-[; ;application.c: 55:                 do{
-[e :U 303 ]
-{
-"56
-[; ;application.c: 56:                 ecu_keypad_get_value(&keypad,&keypad_value);
-[e ( _ecu_keypad_get_value (2 , -> &U _keypad `*CS279 &U _keypad_value ]
-"57
-[; ;application.c: 57:                 _delay((unsigned long)((100)*(8000000ul/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
-"58
-[; ;application.c: 58:                 }while(keypad_value == 0 );
+"38
+[; ;application.c: 38:             }
 }
-[e $ == -> _keypad_value `i -> 0 `i 303  ]
-[e :U 302 ]
-"60
-[; ;application.c: 60:                 if(keypad_value == '1'){
-[e $ ! == -> _keypad_value `ui -> 49 `ui 304  ]
-{
-"61
-[; ;application.c: 61:                     selected_mode = 1 ;
-[e = _selected_mode -> -> 1 `i `uc ]
-"62
-[; ;application.c: 62:                     _delay((unsigned long)((100)*(8000000ul/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
-"63
-[; ;application.c: 63:                     break;
-[e $U 300  ]
-"64
-[; ;application.c: 64:                 }
+[e :U 290 ]
+[e $U 291  ]
+[e :U 292 ]
+"40
+[; ;application.c: 40:             get_password(&pass_obj);
+[e ( _get_password (1 &U _pass_obj ]
+"42
+[; ;application.c: 42:             password_confirmation(&pass_obj,&confirm_pass_obj);
+[e ( _password_confirmation (2 , &U _pass_obj &U _confirm_pass_obj ]
+"45
+[; ;application.c: 45:         }
 }
-[e $U 305  ]
-"65
-[; ;application.c: 65:                 else if(keypad_value == '2'){
-[e :U 304 ]
-[e $ ! == -> _keypad_value `ui -> 50 `ui 306  ]
+[e $U 298  ]
+"46
+[; ;application.c: 46:         else{ }
+[e :U 289 ]
 {
-"66
-[; ;application.c: 66:                     selected_mode = 2 ;
-[e = _selected_mode -> -> 2 `i `uc ]
-"67
-[; ;application.c: 67:                     _delay((unsigned long)((100)*(8000000ul/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
-"68
-[; ;application.c: 68:                     break;
-[e $U 300  ]
-"69
-[; ;application.c: 69:                 }
-}
-[e $U 307  ]
-"70
-[; ;application.c: 70:                 else{
-[e :U 306 ]
-{
-"71
-[; ;application.c: 71:                     lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process ");
-[e ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd1 `*CS280 -> -> 4 `i `uc -> -> 1 `i `uc :s 6C ]
-"72
-[; ;application.c: 72:                     _delay((unsigned long)((500)*(8000000ul/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
-"73
-[; ;application.c: 73:                     lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
-[e ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd1 `*CS280 -> -> 4 `i `uc -> -> 1 `i `uc :s 7C ]
-"74
-[; ;application.c: 74:                     _delay((unsigned long)((500)*(8000000ul/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
-"75
-[; ;application.c: 75:                 }
-}
-[e :U 307 ]
-[e :U 305 ]
-"76
-[; ;application.c: 76:         }
 }
 [e :U 298 ]
-[e $U 299  ]
+"49
+[; ;application.c: 49:         lcd_4bit_send_string_pos(&lcd1,2,1,"1-Enter password.");
+[e ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd1 `*CS280 -> -> 2 `i `uc -> -> 1 `i `uc :s 4C ]
+"50
+[; ;application.c: 50:         lcd_4bit_send_string_pos(&lcd1,3,1,"2-Change password.");
+[e ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd1 `*CS280 -> -> 3 `i `uc -> -> 1 `i `uc :s 5C ]
+"53
+[; ;application.c: 53:          while(1){
 [e :U 300 ]
+{
+"54
+[; ;application.c: 54:                 do{
+[e :U 304 ]
+{
+"55
+[; ;application.c: 55:                 ecu_keypad_get_value(&keypad,&keypad_value);
+[e ( _ecu_keypad_get_value (2 , -> &U _keypad `*CS279 &U _keypad_value ]
+"56
+[; ;application.c: 56:                 _delay((unsigned long)((100)*(8000000ul/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
+"57
+[; ;application.c: 57:                 }while(keypad_value == 0 );
+}
+[e $ == -> _keypad_value `i -> 0 `i 304  ]
+[e :U 303 ]
+"59
+[; ;application.c: 59:                 if(keypad_value == '1'){
+[e $ ! == -> _keypad_value `ui -> 49 `ui 305  ]
+{
+"60
+[; ;application.c: 60:                     selected_mode = 1 ;
+[e = _selected_mode -> -> 1 `i `uc ]
+"61
+[; ;application.c: 61:                     _delay((unsigned long)((100)*(8000000ul/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
+"62
+[; ;application.c: 62:                     break;
+[e $U 301  ]
+"63
+[; ;application.c: 63:                 }
+}
+[e $U 306  ]
+"64
+[; ;application.c: 64:                 else if(keypad_value == '2'){
+[e :U 305 ]
+[e $ ! == -> _keypad_value `ui -> 50 `ui 307  ]
+{
+"65
+[; ;application.c: 65:                     selected_mode = 2 ;
+[e = _selected_mode -> -> 2 `i `uc ]
+"66
+[; ;application.c: 66:                     _delay((unsigned long)((100)*(8000000ul/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
+"67
+[; ;application.c: 67:                     break;
+[e $U 301  ]
+"68
+[; ;application.c: 68:                 }
+}
+[e $U 308  ]
+"69
+[; ;application.c: 69:                 else{
+[e :U 307 ]
+{
+"70
+[; ;application.c: 70:                     lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process ");
+[e ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd1 `*CS280 -> -> 4 `i `uc -> -> 1 `i `uc :s 6C ]
+"71
+[; ;application.c: 71:                     _delay((unsigned long)((500)*(8000000ul/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
+"72
+[; ;application.c: 72:                     lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
+[e ( _lcd_4bit_send_string_pos (4 , , , -> &U _lcd1 `*CS280 -> -> 4 `i `uc -> -> 1 `i `uc :s 7C ]
+"73
+[; ;application.c: 73:                     _delay((unsigned long)((500)*(8000000ul/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
+"74
+[; ;application.c: 74:                 }
+}
+[e :U 308 ]
+[e :U 306 ]
+"75
+[; ;application.c: 75:         }
+}
+[e :U 299 ]
+[e $U 300  ]
+[e :U 301 ]
+"77
+[; ;application.c: 77:         if(selected_mode == 1){
+[e $ ! == -> _selected_mode `i -> 1 `i 309  ]
+{
 "78
-[; ;application.c: 78:         if(selected_mode == 1){
-[e $ ! == -> _selected_mode `i -> 1 `i 308  ]
-{
+[; ;application.c: 78:             entering_password(&enterd_pass_obj,&stored_pass_obj,&user_statue);
+[e ( _entering_password (3 , , &U _enterd_pass_obj &U _stored_pass_obj &U _user_statue ]
 "79
-[; ;application.c: 79:             entering_password(entered_password,&enterd_pass_num_digits,stored_password,&stored_pass_num_digits,&user_statue);
-[e ( _entering_password (4 , , , , &U _entered_password &U _enterd_pass_num_digits &U _stored_password &U _stored_pass_num_digits &U _user_statue ]
+[; ;application.c: 79:             if(user_statue == 1){
+[e $ ! == -> _user_statue `i -> 1 `i 310  ]
+{
 "80
-[; ;application.c: 80:             if(user_statue == 1){
-[e $ ! == -> _user_statue `i -> 1 `i 309  ]
-{
-"81
-[; ;application.c: 81:                 ecu_led_turn_on(&green_led);
+[; ;application.c: 80:                 ecu_led_turn_on(&green_led);
 [e ( _ecu_led_turn_on (1 -> &U _green_led `*CS274 ]
-"82
-[; ;application.c: 82:                 _delay((unsigned long)((1000)*(8000000ul/4000.0)));
+"81
+[; ;application.c: 81:                 _delay((unsigned long)((1000)*(8000000ul/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
-"83
-[; ;application.c: 83:                 ecu_led_turn_off(&green_led);
+"82
+[; ;application.c: 82:                 ecu_led_turn_off(&green_led);
 [e ( _ecu_led_turn_off (1 -> &U _green_led `*CS274 ]
-"84
-[; ;application.c: 84:                 ecu_dc_motor_move_left(&motor1);
+"83
+[; ;application.c: 83:                 ecu_dc_motor_move_left(&motor1);
 [e ( _ecu_dc_motor_move_left (1 -> &U _motor1 `*CS277 ]
+"84
+[; ;application.c: 84:                 _delay((unsigned long)((3000)*(8000000ul/4000.0)));
+[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
 "85
-[; ;application.c: 85:                 _delay((unsigned long)((3000)*(8000000ul/4000.0)));
-[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
-"86
-[; ;application.c: 86:                 ecu_dc_motor_stop(&motor1);
+[; ;application.c: 85:                 ecu_dc_motor_stop(&motor1);
 [e ( _ecu_dc_motor_stop (1 -> &U _motor1 `*CS277 ]
-"88
-[; ;application.c: 88:             }
-}
-[e $U 310  ]
-"89
-[; ;application.c: 89:             else{
-[e :U 309 ]
-{
-"90
-[; ;application.c: 90:                 gpio_pin_write_logic(&buzzer,HIGH);
-[e ( _gpio_pin_write_logic (2 , -> &U _buzzer `*CS273 . `E2979 1 ]
-"91
-[; ;application.c: 91:                 ecu_led_turn_on(&red_led);
-[e ( _ecu_led_turn_on (1 -> &U _red_led `*CS274 ]
-"92
-[; ;application.c: 92:                 _delay((unsigned long)((3000)*(8000000ul/4000.0)));
-[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
-"93
-[; ;application.c: 93:                 gpio_pin_write_logic(&buzzer,LOW);
-[e ( _gpio_pin_write_logic (2 , -> &U _buzzer `*CS273 . `E2979 0 ]
-"94
-[; ;application.c: 94:                 ecu_led_turn_off(&red_led);
-[e ( _ecu_led_turn_off (1 -> &U _red_led `*CS274 ]
-"98
-[; ;application.c: 98:             }
-}
-[e :U 310 ]
-"101
-[; ;application.c: 101:         }
+"87
+[; ;application.c: 87:             }
 }
 [e $U 311  ]
-"102
-[; ;application.c: 102:         else{
-[e :U 308 ]
+"88
+[; ;application.c: 88:             else{
+[e :U 310 ]
 {
-"103
-[; ;application.c: 103:             change_password(entered_password,enterd_pass_num_digits,stored_password,stored_pass_num_digits,
-[e ( _change_password (4 , , , , , , , &U _entered_password -> _enterd_pass_num_digits `*uc &U _stored_password -> _stored_pass_num_digits `*uc &U _password -> _pass_num_digits `*uc &U _password_confirm -> _pass_confirm_num_digits `*uc ]
-"107
-[; ;application.c: 107:         }
+"89
+[; ;application.c: 89:                 gpio_pin_write_logic(&buzzer,HIGH);
+[e ( _gpio_pin_write_logic (2 , -> &U _buzzer `*CS273 . `E2979 1 ]
+"90
+[; ;application.c: 90:                 ecu_led_turn_on(&red_led);
+[e ( _ecu_led_turn_on (1 -> &U _red_led `*CS274 ]
+"91
+[; ;application.c: 91:                 _delay((unsigned long)((3000)*(8000000ul/4000.0)));
+[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 8000000 `ul `d .4000.0 `ul ]
+"92
+[; ;application.c: 92:                 gpio_pin_write_logic(&buzzer,LOW);
+[e ( _gpio_pin_write_logic (2 , -> &U _buzzer `*CS273 . `E2979 0 ]
+"93
+[; ;application.c: 93:                 ecu_led_turn_off(&red_led);
+[e ( _ecu_led_turn_off (1 -> &U _red_led `*CS274 ]
+"97
+[; ;application.c: 97:             }
 }
 [e :U 311 ]
-"113
-[; ;application.c: 113:    }
+"100
+[; ;application.c: 100:         }
 }
-[e :U 285 ]
-[e $U 286  ]
-[e :U 287 ]
-"116
-[; ;application.c: 116:     return (0);
+[e $U 312  ]
+"101
+[; ;application.c: 101:         else{
+[e :U 309 ]
+{
+"102
+[; ;application.c: 102:             change_password(&enterd_pass_obj,&stored_pass_obj,&pass_obj,&confirm_pass_obj);
+[e ( _change_password (4 , , , &U _enterd_pass_obj &U _stored_pass_obj &U _pass_obj &U _confirm_pass_obj ]
+"103
+[; ;application.c: 103:         }
+}
+[e :U 312 ]
+"105
+[; ;application.c: 105:    }
+}
+[e :U 286 ]
+[e $U 287  ]
+[e :U 288 ]
+"108
+[; ;application.c: 108:     return (0);
 [e ) -> 0 `i ]
-[e $UE 284  ]
-"117
-[; ;application.c: 117: }
-[e :UE 284 ]
+[e $UE 285  ]
+"109
+[; ;application.c: 109: }
+[e :UE 285 ]
 }
-"118
-[; ;application.c: 118: void Application_Initialization(void){
+"110
+[; ;application.c: 110: void Application_Initialization(void){
 [v _Application_Initialization `(v ~T0 @X0 1 ef ]
 {
 [e :U _Application_Initialization ]
 [f ]
-"120
-[; ;application.c: 120: ecu_layer_Initialization();
+"112
+[; ;application.c: 112: ecu_layer_Initialization();
 [e ( _ecu_layer_Initialization ..  ]
-"121
-[; ;application.c: 121: }
-[e :UE 312 ]
+"113
+[; ;application.c: 113: }
+[e :UE 313 ]
 }
 [a 1C 49 45 83 101 116 32 110 101 119 32 112 97 115 115 119 111 114 100 46 0 ]
 [a 4C 49 45 69 110 116 101 114 32 112 97 115 115 119 111 114 100 46 0 ]

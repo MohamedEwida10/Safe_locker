@@ -14,9 +14,8 @@ int main() {
     Application_Initialization();
 
     while(1){
-        initialize_var();
         welcome_msg();
-        Data_EEPROM_ReadByte(0x03f8,&pass_check);
+        Data_EEPROM_ReadByte(0x03f8,&pass_check); // check if there is a password has saved in the EEPROM
         if(pass_check == 0xff){
             lcd_4bit_send_string_pos(&lcd1,2,1,"1-Set new password.");
                       
@@ -31,16 +30,16 @@ int main() {
                     break;
                 }
                 else{
-                    lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process ");
+                    lcd_4bit_send_string_pos(&lcd1,4,1,"Unavailable process "); // error message
                     __delay_ms(500);
                     lcd_4bit_send_string_pos(&lcd1,4,1,"                     ");
                     __delay_ms(500);
                 }
             }
             
-            get_password(password,&pass_num_digits);
+            get_password(&pass_obj); // get the password from user
 
-            password_confirmation(password,&pass_num_digits,password_confirm,&pass_confirm_num_digits);
+            password_confirmation(&pass_obj,&confirm_pass_obj); // confirm the password 
             
    
         }
@@ -76,8 +75,8 @@ int main() {
         }
         
         if(selected_mode == 1){
-            entering_password(entered_password,&enterd_pass_num_digits,stored_password,&stored_pass_num_digits,&user_statue);
-            if(user_statue == 1){
+            entering_password(&enterd_pass_obj,&stored_pass_obj,&user_statue); // the user enter the password and check if it is true or not
+            if(user_statue == 1){ //in case of the password is true
                 ecu_led_turn_on(&green_led);
                 __delay_ms(1000);
                 ecu_led_turn_off(&green_led);
@@ -86,7 +85,7 @@ int main() {
                 ecu_dc_motor_stop(&motor1);
 
             }
-            else{
+            else{ //in case of the password is false
                 gpio_pin_write_logic(&buzzer,HIGH);
                 ecu_led_turn_on(&red_led);
                 __delay_ms(3000);
@@ -100,15 +99,8 @@ int main() {
             
         }
         else{
-            change_password(entered_password,enterd_pass_num_digits,stored_password,stored_pass_num_digits,      
-                            password,pass_num_digits,password_confirm,pass_confirm_num_digits);
-                            
-            
+            change_password(&enterd_pass_obj,&stored_pass_obj,&pass_obj,&confirm_pass_obj); // to change the password            
         }
-       
-        
-        
-        
 
    }
 
